@@ -1,16 +1,18 @@
 #!/bin/bash
 
+##########################################################################
+# Copyright: DELVILLE Thibaut
+##########################################################################
+
+##########################################################################
+# Programme : petit script pour mes backups et synchronisations
+##########################################################################
+
+VERSION="0.1.0"; # <release>.<major change>.<minor change>
+PROGRAMME="backup";
+AUTHOR="DELVILLE Thibaut";
+
 source /run/media/thibaut/backup/scripts/backup/config.ini
-
-###############################################
-# Test pour le montage du disque dur externe  #
-###############################################
-
-if [ $(mount | grep a302f00c-9c3f-4b31-a37b-cb6b0d83fc88 | wc -l) == 1 ]
-then 
-    tput blink; echo -e "  \e[1m\e[91mBrancher le disque dur externe et appuyer sur ENTRER\n\e[0;m"; tput sgr0
-  read -p "Appuyer entrer : "
-fi
 
 ##############################
 # Déclaration des fonctions  #
@@ -66,7 +68,7 @@ function backup()
 # Debut du menu #
 #################
 
-DIALOG=${DIALOG=dialog}
+DIALOG=${DIALOG=Xdialog}
 
 HEIGHT=0
 WIDTH=0
@@ -96,40 +98,36 @@ clear
 case $CHOICE in
         1)
             synchro "$SOURCE_RSYNC_PCFIXE_MANJARO" "$DEST_HDD$DEST_RSYNC_PCFIXE_MANJARO" "$EXCLUDE_RSYNC_PCFIXE_MANJARO"
-            bash $DEST_HDD/menu.sh
+            bash $DEST_HDD/scripts/backup/menu.sh
             ;;
         2)
             backup "$SOURCE_BACKUP_PCFIXE_MANJARO" "$DEST_HDD$DEST_BACKUP_PCFIXE_MANJARO" "$EXCLUDE_BACKUP_PCFIXE_MANJARO"
-            bash $DEST_HDD/menu.sh
+            bash $DEST_HDD/scripts/backup/menu.sh
             ;;
         3)
             synchro "$SOURCE_RSYNC_MEDION_MANJARO" "$DEST_HDD$DEST_RSYNC_MEDION_MANJARO" "$EXCLUDE_RSYNC_MEDION_MANJARO"
-            bash $DEST_HDD/menu.sh
+            bash $DEST_HDD/scripts/backup/menu.sh
             ;;
         4)
             synchro "$SOURCE_RSYNC_MEDION_WINDOWS" "$DEST_HDD$DEST_RSYNC_MEDION_WINDOWS" "$EXCLUDE_RSYNC_MEDION_WINDOWS"
-            bash $DEST_HDD/menu.sh
+            bash $DEST_HDD/scripts/backup/menu.sh
             ;;
         5)
             backup "$SOURCE_BACKUP_MEDION_MANJARO" "$DEST_HDD$DEST_BACKUP_MEDION_MANJARO" "$EXCLUDE_BACKUP_MEDION_MANJARO"
-            bash $DEST_HDD/menu.sh
+            bash $DEST_HDD/scripts/backup/menu.sh
             ;;
         6)
             backup "$SOURCE_BACKUP_MEDION_WINDOWS" "$DEST_HDD$DEST_BACKUP_MEDION_WINDOWS" "$EXCLUDE_BACKUP_MEDION_WINDOWS"
-            bash $DEST_HDD/menu.sh
+            bash $DEST_HDD/scripts/backup/menu.sh
             ;;
         7)
             UTILISE=$(df -h | grep thibaut/backup | awk '{print $3}')
             LIBRE=$(  df -h | grep thibaut/backup | awk '{print $4}')
             TAILLE=$( df -h | grep thibaut/backup | awk '{print $2}')
             $DIALOG --msgbox "Il reste $LIBRE/$TAILLE sur le support de stockage utilisé pour la sauvegarde." 0 0
-            bash $DEST_HDD/menu.sh
+            bash $DEST_HDD/scripts/backup/menu.sh
             ;;
         8)
             exit
             ;;            
-
 esac
-
-
-
