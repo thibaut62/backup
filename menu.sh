@@ -18,25 +18,25 @@ source /run/media/thibaut/backup/scripts/backup/config.ini
 # Déclaration des fonctions  #
 ##############################
 
-function danger()
+danger()
 {
   tput blink; echo -e "\n\e[1m\e[91m$DANGER\n\e[0;m"; tput sgr0
   read -p "Appuyer sur entrer : "
 }
 
-function rsync_fin()
+rsync_fin()
 {
   echo -e "\n"
   read -p "Synchronisation terminée appuyer sur entrer : "
 }
 
-function backup_fin()
+backup_fin()
 {
   echo -e "\n"
   read -p "Sauvegarde terminée appuyer enter: "
 }
 
-function synchro()
+synchro()
 {
   source="$1"
   destination="$2"
@@ -47,7 +47,7 @@ function synchro()
   rsync_fin
 }
 
-function backup()
+backup()
 {
   source="$1"
   destination="$2"
