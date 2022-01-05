@@ -68,7 +68,7 @@ backup()
 # Debut du menu #
 #################
 
-DIALOG=${DIALOG=dialog}
+DIALOG=${DIALOG=Xdialog}
 
 HEIGHT=0
 WIDTH=0
