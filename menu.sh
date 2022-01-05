@@ -15,6 +15,13 @@ AUTHOR="DELVILLE Thibaut";
 source /home/thibaut/scripts/backup/config.ini
 
 ##############################
+# Déclaration des variables  #
+##############################
+
+DIALOG=${DIALOG=Xdialog}
+CHEMIN="/home/thibaut/"
+
+##############################
 # Déclaration des fonctions  #
 ##############################
 
@@ -64,6 +71,16 @@ backup()
   backup_fin
 }
 
+choix_dossier()
+{
+  DEST_HDD=$($DIALOG --dselect / 0 0 2>&1 1>/dev/tty)
+}
+##########################################################################
+# Début du programme:
+##########################################################################
+
+DEST_HDD=$($DIALOG --dselect / 0 0 2>&1 1>/dev/tty)
+
 #################
 # Debut du menu #
 #################
@@ -98,34 +115,34 @@ clear
 case $CHOICE in
         1)
             synchro "$SOURCE_RSYNC_PCFIXE_MANJARO" "$DEST_HDD$DEST_RSYNC_PCFIXE_MANJARO" "$EXCLUDE_RSYNC_PCFIXE_MANJARO"
-            bash $DEST_HDD/scripts/backup/menu.sh
+            bash $CHEMIN/scripts/backup/menu.sh
             ;;
         2)
             backup "$SOURCE_BACKUP_PCFIXE_MANJARO" "$DEST_HDD$DEST_BACKUP_PCFIXE_MANJARO" "$EXCLUDE_BACKUP_PCFIXE_MANJARO"
-            bash $DEST_HDD/scripts/backup/menu.sh
+            bash $CHEMIN/scripts/backup/menu.sh
             ;;
         3)
             synchro "$SOURCE_RSYNC_MEDION_MANJARO" "$DEST_HDD$DEST_RSYNC_MEDION_MANJARO" "$EXCLUDE_RSYNC_MEDION_MANJARO"
-            bash $DEST_HDD/scripts/backup/menu.sh
+            bash $CHEMIN/scripts/backup/menu.sh
             ;;
         4)
             synchro "$SOURCE_RSYNC_MEDION_WINDOWS" "$DEST_HDD$DEST_RSYNC_MEDION_WINDOWS" "$EXCLUDE_RSYNC_MEDION_WINDOWS"
-            bash $DEST_HDD/scripts/backup/menu.sh
+            bash $CHEMIN/scripts/backup/menu.sh
             ;;
         5)
             backup "$SOURCE_BACKUP_MEDION_MANJARO" "$DEST_HDD$DEST_BACKUP_MEDION_MANJARO" "$EXCLUDE_BACKUP_MEDION_MANJARO"
-            bash $DEST_HDD/scripts/backup/menu.sh
+            bash $CHEMIN/scripts/backup/menu.sh
             ;;
         6)
             backup "$SOURCE_BACKUP_MEDION_WINDOWS" "$DEST_HDD$DEST_BACKUP_MEDION_WINDOWS" "$EXCLUDE_BACKUP_MEDION_WINDOWS"
-            bash $DEST_HDD/scripts/backup/menu.sh
+            bash $CHEMIN/scripts/backup/menu.sh
             ;;
         7)
             UTILISE=$(df -h | grep thibaut/backup | awk '{print $3}')
             LIBRE=$(  df -h | grep thibaut/backup | awk '{print $4}')
             TAILLE=$( df -h | grep thibaut/backup | awk '{print $2}')
             $DIALOG --msgbox "Il reste $LIBRE/$TAILLE sur le support de stockage utilisé pour la sauvegarde." 0 0
-            bash $DEST_HDD/scripts/backup/menu.sh
+            bash $CHEMIN/scripts/backup/menu.sh
             ;;
         8)
             exit
