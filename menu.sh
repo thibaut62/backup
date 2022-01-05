@@ -12,7 +12,7 @@ VERSION="0.1.0"; # <release>.<major change>.<minor change>
 PROGRAMME="backup";
 AUTHOR="DELVILLE Thibaut";
 
-source /run/media/thibaut/backup/scripts/backup/config.ini
+source /home/thibaut/scripts/backup/config.ini
 
 ##############################
 # Déclaration des fonctions  #
