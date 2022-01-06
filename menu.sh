@@ -79,13 +79,13 @@ choix_dossier()
 # Début du programme:
 ##########################################################################
 
-DEST_HDD=$($DIALOG --dselect / 0 0 2>&1 1>/dev/tty)
+DEST_HDD=$($DIALOG --title "Emplacement du Disque de sauvegarde" --dselect / 0 0 2>&1 1>/dev/tty)
 
 #################
 # Debut du menu #
 #################
 
-DIALOG=${DIALOG=dialog}
+#DIALOG=${DIALOG=dialog}
 
 HEIGHT=0
 WIDTH=0
