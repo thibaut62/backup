@@ -8,7 +8,7 @@
 # Programme : petit script pour mes backups et synchronisations
 ##########################################################################
 
-VERSION="0.1.0"; # <release>.<major change>.<minor change>
+VERSION="0.1.5"; # <release>.<major change>.<minor change>
 PROGRAMME="backup";
 AUTHOR="DELVILLE Thibaut";
 
