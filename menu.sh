@@ -120,7 +120,7 @@ menu()
               menu
               ;;
           3)
-              synchro "$SOURCE_RSYNC_MEDION_MANJARO" "$DEST_HDD$DEST_RSYNC_ARRAS_WINDOWS" "$EXCLUDE_RSYNC_PCFIXE_ARRAS"
+              synchro "$SOURCE_RSYNC_PCFIXE_ARRAS" "$DEST_HDD$DEST_RSYNC_PCFIXE_ARRAS" "$EXCLUDE_RSYNC_PCFIXE_ARRAS"
               menu
               ;;
           4)
